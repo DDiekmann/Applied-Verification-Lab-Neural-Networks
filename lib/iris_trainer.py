@@ -39,7 +39,7 @@ def load_dataset():
     print("Shape of training set X", X_train.shape)
     print("Shape of test set X", X_test.shape)
 
-    return X_train, X_test, y_train, y_test
+    return X, y, X_scaled, X_train, X_test, y_train, y_test
 
 def train(X, y, model, loss_fn, optimizer):
     model.train()
