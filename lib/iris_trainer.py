@@ -84,17 +84,20 @@ def test(X, y, model, loss_fn):
     return correct, test_loss
 
 def train_model(model, epochs, X_train, X_test, y_train, y_test):
-  loss_fn = nn.CrossEntropyLoss()
-  optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    torch.manual_seed(42)
 
+    model = model.to(device)
 
-  loss_list     = np.zeros((epochs,))
-  accuracy_list = np.zeros((epochs,))
+    loss_fn = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-  for epoch in trange(epochs):
-    loss_list[epoch] = train(X_train, y_train, model, loss_fn, optimizer)
-    correct, test_loss = test(X_test, y_test, model, loss_fn)
-    accuracy_list[epoch] = correct
-  
-  print()
-  print("Done. Accuracy:", accuracy_list[-1])
+    loss_list     = np.zeros((epochs,))
+    accuracy_list = np.zeros((epochs,))
+
+    for epoch in trange(epochs):
+        loss_list[epoch] = train(X_train, y_train, model, loss_fn, optimizer)
+        correct, test_loss = test(X_test, y_test, model, loss_fn)
+        accuracy_list[epoch] = correct
+    
+    print()
+    print("Done. Accuracy:", accuracy_list[-1])
