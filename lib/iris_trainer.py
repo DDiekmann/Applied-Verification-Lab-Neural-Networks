@@ -6,6 +6,10 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
+from tqdm import trange
+
+import numpy as np
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 def load_dataset():
@@ -87,7 +91,7 @@ def train_model(model, epochs, X_train, X_test, y_train, y_test):
   loss_list     = np.zeros((epochs,))
   accuracy_list = np.zeros((epochs,))
 
-  for epoch in tqdm.trange(epochs):
+  for epoch in trange(epochs):
     loss_list[epoch] = train(X_train, y_train, model, loss_fn, optimizer)
     correct, test_loss = test(X_test, y_test, model, loss_fn)
     accuracy_list[epoch] = correct
