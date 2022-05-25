@@ -105,28 +105,3 @@ def train_model(model, epochs, X_train, X_test, y_train, y_test):
     print()
     print("Done. Accuracy:", accuracy_list[-1])
     return model
-
-def show_plots(names, feature_names, X, y, fixed_input = None, epsilon = None, title = ''):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
-    fig.suptitle(title, fontsize=16)
-    for target, target_name in enumerate(names):
-        X_plot = X[y == target]
-        ax1.plot(X_plot[:, 0], X_plot[:, 1], 
-                linestyle='none', 
-                marker='o', 
-                label=target_name)
-    ax1.set_xlabel(feature_names[0])
-    ax1.set_ylabel(feature_names[1])
-    ax1.axis('equal')
-    ax1.legend()
-
-    for target, target_name in enumerate(names):
-        X_plot = X[y == target]
-        ax2.plot(X_plot[:, 2], X_plot[:, 3], 
-                linestyle='none', 
-                marker='o', 
-                label=target_name)
-    ax2.set_xlabel(feature_names[2])
-    ax2.set_ylabel(feature_names[3])
-    ax2.axis('equal')
-    ax2.legend()
