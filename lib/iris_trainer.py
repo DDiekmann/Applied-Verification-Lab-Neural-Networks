@@ -1,29 +1,23 @@
+import numpy as np
 import torch
-from torch import nn
-from torch.autograd import Variable
-
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
+from torch import nn
+from torch.autograd import Variable
 from tqdm import trange
-
-import numpy as np
-
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def load_dataset():
 
+def load_dataset():
     iris = load_iris()
 
     X = iris['data']
     y = iris['target']
     names = iris['target_names']
     feature_names = iris['feature_names']
-    
+
     print(f"Shape of X (data): {X.shape}")
     print(f"Shape of y (target): {y.shape} {y.dtype}")
     print(f"Example of x and y pair: {X[0]} {y[0]}")
@@ -41,9 +35,10 @@ def load_dataset():
 
     return names, feature_names, X, y, X_scaled, X_train, X_test, y_train, y_test
 
+
 def train(X, y, model, loss_fn, optimizer):
     model.train()
-    
+
     # convert numpy array to pytorch tensor
     X = Variable(torch.from_numpy(X)).float()
     y = Variable(torch.from_numpy(y)).long()
@@ -62,6 +57,7 @@ def train(X, y, model, loss_fn, optimizer):
     loss = loss.item()
     return loss
 
+
 def predict(X, model):
     model.eval()
     with torch.no_grad():
@@ -71,6 +67,7 @@ def predict(X, model):
         pred = pred.argmax(1)
         pred = pred.cpu().detach().numpy()
     return pred
+
 
 def test(X, y, model, loss_fn):
     model.eval()
@@ -86,6 +83,7 @@ def test(X, y, model, loss_fn):
     correct /= X.shape[0]
     return correct, test_loss
 
+
 def train_model(model, epochs, X_train, X_test, y_train, y_test):
     torch.manual_seed(42)
 
@@ -94,14 +92,14 @@ def train_model(model, epochs, X_train, X_test, y_train, y_test):
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-    loss_list     = np.zeros((epochs,))
+    loss_list = np.zeros((epochs,))
     accuracy_list = np.zeros((epochs,))
 
     for epoch in trange(epochs):
         loss_list[epoch] = train(X_train, y_train, model, loss_fn, optimizer)
         correct, test_loss = test(X_test, y_test, model, loss_fn)
         accuracy_list[epoch] = correct
-    
+
     print()
     print("Done. Accuracy:", accuracy_list[-1])
     return model
