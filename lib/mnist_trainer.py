@@ -81,3 +81,4 @@ def train_model(model, epochs, train_dataloader, test_dataloader):
         print(f"Test Error: \n Accuracy: {(100 * correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
     print("Done!")
+    return model
