@@ -9,8 +9,37 @@ from tqdm import tqdm
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
-def load_dataset(batch_size=64):
+def load_gtsrb_dataset(batch_size=64):
     # Download training and test data
+    # https://pytorch.org/vision/main/generated/torchvision.datasets.GTSRB.html
+    training_data = datasets.GTSRB(
+        root="data",
+        split="train",
+        download=True,
+        transform=ToTensor(),
+    )
+    test_data = datasets.GTSRB(
+        root="data",
+        split="test",
+        download=True,
+        transform=ToTensor(),
+    )
+
+    # Create data loaders.
+    train_dataloader = DataLoader(training_data, batch_size=batch_size)
+    test_dataloader = DataLoader(test_data, batch_size=batch_size)
+
+    for X, y in test_dataloader:
+        print(f"Shape of X [N, C, H, W]: {X.shape}")
+        print(f"Shape of y: {y.shape} {y.dtype}")
+        break
+
+    return train_dataloader, test_dataloader
+
+
+def load_mnist_dataset(batch_size=64):
+    # Download training and test data
+    # https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html#torchvision.datasets.MNIST
     training_data = datasets.MNIST(
         root="data",
         train=True,
