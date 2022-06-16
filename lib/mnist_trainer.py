@@ -5,7 +5,7 @@ import pandas as pd
 import requests
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, random_split
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 from tqdm import tqdm
@@ -133,6 +133,7 @@ class CensusIncomeDataset(Dataset):
 
 def load_census_income_dataset(batch_size=64):
     # https://archive.ics.uci.edu/ml/datasets/census+income
+    # load data
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
     r = requests.get(url)
     Path("data/census/").mkdir(parents=True, exist_ok=True)
@@ -140,16 +141,25 @@ def load_census_income_dataset(batch_size=64):
     with open(filename, 'w') as file:
         file.write(r.text)
 
-    data = CensusIncomeDataset(filename)
-    # Create data loaders.
-    train_dataloader = DataLoader(data, batch_size=batch_size)
+    # create pytorch dataset
+    dataset = CensusIncomeDataset(filename)
 
-    for X, y in train_dataloader:
+    # train test split
+    test_split = 0.8
+    train_size = int(test_split * len(dataset))
+    test_size = len(dataset) - train_size
+    train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
+
+    # Create data loaders
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size)
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
+
+    for X, y in test_dataloader:
         print(f"Shape of X: {X.shape}")
         print(f"Shape of y: {y.shape} {y.dtype}")
         break
 
-    return train_dataloader
+    return train_dataloader, test_dataloader
 
 
 def train(dataloader, model, loss_fn, optimizer):
