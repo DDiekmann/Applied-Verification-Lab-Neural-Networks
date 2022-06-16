@@ -34,7 +34,7 @@ def load_gtsrb_dataset(batch_size=64):
     test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
     for X, y in test_dataloader:
-        print(f"Shape of X [N, C, H, W]: {X.shape}")
+        print(f"Shape of X [N, C, H, W]: {X.shape} {X.dtype}")
         print(f"Shape of y: {y.shape} {y.dtype}")
         break
 
@@ -62,7 +62,7 @@ def load_mnist_dataset(batch_size=64):
     test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
     for X, y in test_dataloader:
-        print(f"Shape of X [N, C, H, W]: {X.shape}")
+        print(f"Shape of X [N, C, H, W]: {X.shape} {X.dtype}")
         print(f"Shape of y: {y.shape} {y.dtype}")
         break
 
@@ -99,21 +99,15 @@ class CensusIncomeDataset(Dataset):
         df.sex.replace(('Female', 'Male'), (1, 2), inplace=True)
         df["native-country"].replace(('United-States', 'Cambodia', 'England', 'Puerto-Rico', 'Canada', 'Germany',
                                       'Outlying-US(Guam-USVI-etc)', 'India', 'Japan', 'Greece', 'South', 'China',
-                                      'Cuba',
-                                      'Iran', 'Honduras', 'Philippines', 'Italy', 'Poland', 'Jamaica', 'Vietnam',
-                                      'Mexico',
-                                      'Portugal', 'Ireland', 'France', 'Dominican-Republic', 'Laos', 'Ecuador',
-                                      'Taiwan',
-                                      'Haiti', 'Columbia', 'Hungary', 'Guatemala', 'Nicaragua', 'Scotland', 'Thailand',
-                                      'Yugoslavia', 'El-Salvador', 'Trinadad&Tobago', 'Peru', 'Hong',
-                                      'Holand-Netherlands'), (
+                                      'Cuba', 'Iran', 'Honduras', 'Philippines', 'Italy', 'Poland', 'Jamaica',
+                                      'Vietnam', 'Mexico', 'Portugal', 'Ireland', 'France', 'Dominican-Republic',
+                                      'Laos', 'Ecuador', 'Taiwan', 'Haiti', 'Columbia', 'Hungary', 'Guatemala',
+                                      'Nicaragua', 'Scotland', 'Thailand', 'Yugoslavia', 'El-Salvador',
+                                      'Trinadad&Tobago', 'Peru', 'Hong', 'Holand-Netherlands'), (
                                          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-                                         23,
-                                         24,
-                                         25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41),
+                                         23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41),
                                      inplace=True)
         df.income.replace(('<=50K', '>50K'), (0, 1), inplace=True)
-        df = df.astype("int64")
         return df
 
     def __init__(self, filename):
@@ -121,8 +115,8 @@ class CensusIncomeDataset(Dataset):
         x = df.iloc[:, 0:14].values
         y = df.iloc[:, 14].values
 
-        self.x_train = torch.tensor(x, dtype=torch.int64)
-        self.y_train = torch.tensor(y, dtype=torch.int64)
+        self.x_train = torch.tensor(x, dtype=torch.float)
+        self.y_train = torch.tensor(y, dtype=torch.long)
 
     def __len__(self):
         return len(self.y_train)
@@ -145,6 +139,7 @@ def load_census_income_dataset(batch_size=64):
     dataset = CensusIncomeDataset(filename)
 
     # train test split
+    torch.manual_seed(42)
     test_split = 0.8
     train_size = int(test_split * len(dataset))
     test_size = len(dataset) - train_size
@@ -155,7 +150,7 @@ def load_census_income_dataset(batch_size=64):
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size)
 
     for X, y in test_dataloader:
-        print(f"Shape of X: {X.shape}")
+        print(f"Shape of X: {X.shape} {X.dtype}")
         print(f"Shape of y: {y.shape} {y.dtype}")
         break
 
