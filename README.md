@@ -17,7 +17,7 @@ The illustration shows, for example, image recognition for an animal. On the lef
 
 ### SMT Based Verification
 
-If you are new to SMT based verification of neural network we recommend you starting with the Z3 Tutorial because it is the most basic one. If you are additionally interested in the theory behind this we recommend this [book on neural network verification](https://arxiv.org/pdf/2109.10317.pdf). 
+If you are **new to SMT based verification** of neural network we recommend you starting with the Z3 Tutorial because it is the most basic one. If you are additionally interested in the theory behind this we recommend this [book on neural network verification](https://arxiv.org/pdf/2109.10317.pdf). 
 
 | Tool             | Colab Link | Tool Codebase                                        | Progress                |
 |------------------|------------|------------------------------------------------------|-------------------------|
