@@ -28,6 +28,8 @@ If you are **new to SMT based verification** of neural network we recommend you 
 
 ### Abstraction Based Verification
 
-:red_circle: WIP 
+| Tool             | Colab Link | Tool Codebase                                        | Progress                |
+|------------------|------------|------------------------------------------------------|-------------------------|
+| ERAN               | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Verification_by_abstraction_with_eran.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/eth-sri/eran                       | :red_circle: WIP |
 
 ## Tasks
