@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-def show_plots(names, feature_names, X, y, fixed_input = None, epsilon = None, title = ''):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+def show_plots(names, feature_names, X, y, fixed_input = None, epsilon = None, title = '', fig = None, ax1 = None, ax2 = None):
+    if fig == None:
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
     fig.suptitle(title, fontsize=16)
     for target, target_name in enumerate(names):
         X_plot = X[y == target]
