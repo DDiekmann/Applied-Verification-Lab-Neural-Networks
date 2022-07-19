@@ -36,4 +36,3 @@ If you are **new to SMT based verification** of neural network we recommend you 
 |------------------|------------|------------------------------------------------------|-------------------------|
 | α,β-CROWN | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Alpha_Beta_Crown.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/huanzhang12/alpha-beta-CROWN      | :heavy_check_mark: DONE |
 
-## Tasks
