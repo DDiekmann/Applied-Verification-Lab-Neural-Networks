@@ -23,13 +23,13 @@ If you are **new to SMT based verification** of neural network we recommend you 
 |------------------|------------|------------------------------------------------------|-------------------------|
 | Z3               | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Tutorial_for_SMT_based_Verification_with_Z3.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/Z3Prover/z3                       | :heavy_check_mark: DONE |
 | Marabou          | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Tutorial_for_Neural_Network_Verification_with_Marabou.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/NeuralNetworkVerification/Marabou | :heavy_check_mark: DONE |
-| Planet           | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Planet.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/progirep/planet                   | :red_circle: WIP        |
+| Planet           | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Planet.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/progirep/planet                   | :heavy_check_mark: DONE        |
 
 ### Abstraction Based Verification
 
 | Tool             | Colab Link | Tool Codebase                                        | Progress                |
 |------------------|------------|------------------------------------------------------|-------------------------|
-| ERAN               | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Verification_by_abstraction_with_eran.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/eth-sri/eran                       | :red_circle: WIP |
+| ERAN               | <a href="https://colab.research.google.com/github/DDiekmann/Applied-Verification-Lab-Neural-Networks/blob/main/Tutorials/Verification_by_abstraction_with_eran.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> | https://github.com/eth-sri/eran                       | :heavy_check_mark: DONE |
 
 ### Others
 | Tool             | Colab Link | Tool Codebase                                        | Progress                |
