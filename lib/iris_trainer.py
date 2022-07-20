@@ -25,6 +25,8 @@ def load_dataset():
     # Scale data to have mean 0 and variance 1 
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
+    
+    torch.manual_seed(42)
 
     # Split the data set into training and testing
     X_train, X_test, y_train, y_test = train_test_split(
