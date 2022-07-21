@@ -31,14 +31,14 @@ def show_plots(names, feature_names, X, y, fixed_input = None, epsilon = None, t
     #add rectangle to plot -> shows infinity norm 
         ax1.add_patch(Rectangle((fixed_input[0] - epsilon, fixed_input[1] - epsilon), 
                                 2*epsilon, 2*epsilon, 
-                                edgecolor='pink',
+                                edgecolor='red',
                                 facecolor='none',      
                                 lw=4))
         ax1.set_aspect("equal", adjustable="datalim")
 
         ax2.add_patch(Rectangle((fixed_input[2]-epsilon, fixed_input[3]-epsilon), 
                                 2*epsilon, 2*epsilon, 
-                                edgecolor='pink',
+                                edgecolor='red',
                                 facecolor='none',      
                                 lw=4))
         ax2.set_aspect("equal", adjustable="datalim")
