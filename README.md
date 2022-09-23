@@ -1,7 +1,5 @@
 # Tutorials for Neural Network Verification Tools
 
-*This is a work in progress repository. Currently worked on by a course at the Carl von Ossietzky University Oldenburg.* 
-
 ## Why do we need to verify neural networks? 
 
 Nowadays, neural networks are used in safety-critical areas, among others. As a result, there is a need to formally prove some of the network's behaviours (especially under malicious inputs).
